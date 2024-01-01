@@ -1,4 +1,4 @@
-package OrdersSystem.demo.Order.models;
+package OrdersSystem.demo.Product.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductCriteria {
+public class ProductCriteria {//this class is used to be able to send a product to the body of a request
     private String serialNumber;
     private int quantity;
 }

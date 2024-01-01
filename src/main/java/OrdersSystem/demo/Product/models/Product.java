@@ -1,4 +1,4 @@
-package OrdersSystem.demo.Order.models;
+package OrdersSystem.demo.Product.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

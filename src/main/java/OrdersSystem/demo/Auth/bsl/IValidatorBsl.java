@@ -1,6 +1,5 @@
 package OrdersSystem.demo.Auth.bsl;
 
-import org.springframework.stereotype.Service;
 
 public interface IValidatorBsl {
     public boolean validatEmail(String input);

@@ -6,7 +6,8 @@ import java.util.Map;
 
 import OrdersSystem.demo.Order.models.Order;
 import OrdersSystem.demo.Order.models.OrderStatus;
-import OrdersSystem.demo.Order.models.Product;
+import OrdersSystem.demo.Product.models.Product;
+import OrdersSystem.demo.Product.repo.ProductRepo;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -59,11 +60,12 @@ public class OrderRepo {
         orders.add(order4);
     }
 
-
+    //get all orders in database
     public ArrayList<ArrayList<Order>> getOrders() {
         return orders;
     }
 
+    //get all simple orders
     public ArrayList<ArrayList<Order>> getSimpleOrders() {
         ArrayList<ArrayList<Order>> simpleOrders = new ArrayList<>();
         for (ArrayList<Order> order : orders) {
@@ -73,7 +75,7 @@ public class OrderRepo {
         }
         return simpleOrders;
     }
-
+    //get all compound orders
     public ArrayList<ArrayList<Order>> getCompoundOrders() {
         ArrayList<ArrayList<Order>> compoundOrders = new ArrayList<>();
         for (ArrayList<Order> order : orders) {
@@ -84,6 +86,20 @@ public class OrderRepo {
         return compoundOrders;
     }
 
+    //get orderlist (simple or compound) for a specific customer by orderID
+    public ArrayList<Order> getOrderList(int orderID) {
+        ArrayList<Order> orderList = null;
+        for (ArrayList<Order> orders : orders) {
+            for (Order order : orders) {
+                if (order.getOrderID() == orderID) {
+                    orderList = orders;
+                    break;
+                }
+            }
+        }
+        return orderList;
+    }
+    //get order by orderID
     public Order getOrder(int orderID) {
         Order order = null;
         for (ArrayList<Order> orders : orders) {
@@ -96,6 +112,4 @@ public class OrderRepo {
         }
         return order;
     }
-
-
 }

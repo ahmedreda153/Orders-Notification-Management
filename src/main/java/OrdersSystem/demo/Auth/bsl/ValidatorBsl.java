@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ValidatorBsl implements IValidatorBsl {
+    //validate email format and length and return true if valid and false if not
     @Override
     public boolean validatEmail(String email) {
         if (email.length() < 8) {
@@ -16,7 +17,7 @@ public class ValidatorBsl implements IValidatorBsl {
             return true;
         }
     }
-
+    //validate name format and length and return true if valid and false if not
     @Override
     public boolean validatName(String input) {
         if (input.length() < 3) {
@@ -29,7 +30,7 @@ public class ValidatorBsl implements IValidatorBsl {
             return true;
         }
     }
-
+    //validate password format and length and return true if valid and false if not
     @Override
     public boolean validatPassword(String password) {
         if (password.length() < 8) {

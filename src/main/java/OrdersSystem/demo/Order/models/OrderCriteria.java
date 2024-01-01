@@ -1,5 +1,6 @@
 package OrdersSystem.demo.Order.models;
 
+import OrdersSystem.demo.Product.models.ProductCriteria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,17 +1,14 @@
 package OrdersSystem.demo.Notfications.bsl;
 
-import OrdersSystem.demo.Auth.models.AccountManager;
-import OrdersSystem.demo.Notfications.models.NotificationTemplate;
-import OrdersSystem.demo.Notfications.repo.NotificationRepo;
+import OrdersSystem.demo.Auth.bsl.AccountManagerBsl;
+import OrdersSystem.demo.Notfications.models.Notification;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailStrategyBsl implements ChannelBsl{
-    private NotificationRepo notificationRepo;
-
+    //send notification to customer by email
     @Override
-    public void sendNotification(NotificationTemplate notificationTemplate, AccountManager accountManager) {
-        notificationTemplate.setUserID(accountManager.getId());
-        notificationRepo.getNotificationQueue().add(notificationTemplate);
+    public void send(Notification notification, AccountManagerBsl accountManagerBsl) {
+        accountManagerBsl.notifyCustomer(notification);
     }
 }

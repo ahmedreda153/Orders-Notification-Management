@@ -1,6 +1,5 @@
 package OrdersSystem.demo.Auth.bsl;
 
-import OrdersSystem.demo.Auth.models.AccountManager;
 import OrdersSystem.demo.Auth.models.User;
 import OrdersSystem.demo.Auth.repo.UsersRepo;
 import OrdersSystem.demo.Order.models.Order;
@@ -17,29 +16,32 @@ public class AuthenticationBsl implements IAuthenticationBsl{
         userRepo = UsersRepo.getInstance();
         validatorBsl = new ValidatorBsl();
     }
-
+    //take username and password and check if they exist in the database and return the account manager or null if not exist
     @Override
-    public AccountManager login(String username, String password) {
-        User user = userRepo.checkUserExistance(username, password);
+    public Object login(String email, String password) {
+        User user = userRepo.checkUserExistence(email, password);
         if (user != null) {
-            return userRepo.getAccountManager(username, password);
+            return userRepo.getAccountManager(email, password);
         } else {
-            return null;
+            return "User not found";
         }
     }
-
+    //return all users in the database
     public ArrayList<User> allUsers(){
-        return userRepo.userTable;
+        return userRepo.getUserTable();
     }
-
+    //take user object and check if the email and password are valid and if the user is not exist in the database add it and return a message
     @Override
     public String register(User user) {
         if (validatorBsl.validatEmail(user.getEmail())) {
             if (validatorBsl.validatPassword(user.getPassword())) {
-                if (userRepo.addUser(user))
+                if (userRepo.checkUniqueEmail(user.getEmail())) {
+                    userRepo.addUser(user);
                     return "User registered successfully";
-                else
+                }
+                else{
                     return "User already exists";
+                }
             } else {
                 return "Password must be at least 8 characters and alphanumeric and contain a special character";
             }
@@ -48,6 +50,7 @@ public class AuthenticationBsl implements IAuthenticationBsl{
         }
     }
 
+    //take user id and return all orders for this user
     @Override
     public ArrayList<ArrayList<Order>> getOrdersHistory(int customerID) {
         return userRepo.getOrdersHistory(customerID);

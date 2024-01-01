@@ -1,10 +1,8 @@
 package OrdersSystem.demo.Notfications.bsl;
 
-import OrdersSystem.demo.Auth.models.AccountManager;
-import OrdersSystem.demo.Notfications.models.NotificationTemplate;
+import OrdersSystem.demo.Auth.bsl.AccountManagerBsl;
+import OrdersSystem.demo.Notfications.models.Notification;
 
 public interface ChannelBsl {
-
-    public void sendNotification(NotificationTemplate notificationTemplate, AccountManager accountManager);
-    
+    void send(Notification notification, AccountManagerBsl accountManagerBsl);
 }

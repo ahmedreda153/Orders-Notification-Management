@@ -1,6 +1,6 @@
-package OrdersSystem.demo.Order.repo;
+package OrdersSystem.demo.Product.repo;
 
-import OrdersSystem.demo.Order.models.Product;
+import OrdersSystem.demo.Product.models.Product;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
@@ -9,13 +9,14 @@ public class ProductRepo {
     private static ProductRepo instance;
     private ArrayList<Product> products = new ArrayList<Product>();
 
+    //singleton design pattern to make sure that there is only one instance of the repository
     public static ProductRepo getInstance() {
         if (instance == null) {
             instance = new ProductRepo();
         }
         return instance;
     }
-
+    //set intial products to the repository 
     public ProductRepo() {
         products.add(new Product("7895","Twix","Spinnes","Chocolate",1.50,10));
         products.add(new Product("7896","Snickers","Spinnes","Chocolate",2,20));
@@ -33,6 +34,7 @@ public class ProductRepo {
         return products;
     }
 
+    //get product by its serial number
     public Product getProduct(String productCode) {
         Product product = null;
         for (Product p : products) {
@@ -42,9 +44,4 @@ public class ProductRepo {
         }
         return product;
     }
-
-
-
-
-
 }
